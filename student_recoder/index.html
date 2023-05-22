@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Registration Form</title>
+  <script src="https://kit.fontawesome.com/20fa01975d.js" crossorigin="anonymous"></script>
+  <style>
+    body{
+        /* background-color: white; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+        /* background-color: #ee9715 */
+        /* background: url(students_09.jpg) no-repeat center center fixed; */
+        
+        
+    }
+    .hr{
+        margin: 0px;
+    }
+    .sample{
+        text-align: center;
+        font-size: 25px;
+        margin: 0px;
+        color: #a6fcaf;
+        
+        
+    }
+    .container {
+      display: flex;
+      
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 800px;
+      /* margin: 0 initial; */
+        border-radius: 5em;
+      /* margin-left: auto;*/
+    margin-right: auto;
+    /* width: 60%;  */
+    background-color: rgb(240, 240, 240);
+    /* background-image: url(students_09.jpg); */
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding: 40px;
+    margin: auto;
+
+      
+    }
+    
+    
+    .form-container {
+      width: 300px;
+      
+    }
+    
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="password"],
+    .form-container input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 1em;
+      margin-bottom: .1em;
+    }
+    
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    
+    .form-container p {
+      font-weight: bold;
+    }
+    
+    .registration-data {
+      width: 400px;
+    }
+    
+    .registration-data p {
+      margin: auto;
+    }
+    
+    .id-card {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+      align-items: center;
+      background: #0f0f0fd0;
+      color: #ccc;
+    }
+    
+    .id-card img {
+      max-width: 100px;
+      margin-bottom: 10px;
+      height: auto;
+    }
+    .link{
+    font-size:50px;
+      text-align: center;
+    }
+    
+
+    
+    .id-card p {
+      text-align: center;
+    }
+    .seperation-border{
+    box-sizing: border-box;
+    box-shadow: 0px 0px 3px 0px var(--bg-light-green);
+    width: 3.7px;
+    height: 90vh;
+    background : rgb(0, 0, 0);
+  }
+
+    /* @media screen and (max-width :968px){
+        hr.seperation-border{
+            height: 100;
+        }
+    } */
+  </style>
+</head>
+<body>
+    <div class="sample"> <h1>STUDENT ENROLLMENT FORM 2023</h1> 
+        <hr>
+    </h1></div>
+    
+  <div class="container">
+    <div class="form-container">
+      <h2>Registration Form</h2>
+      <form id="registration-form" onsubmit="event.preventDefault(); displayRegistrationData();">
+        <p>Full Name:</p>
+        <input type="text" id="fullname" required>
+        <p>Email:</p>
+        <input type="email" id="email" required>
+        <p>Password:</p>
+        <input type="password" id="password" required>
+        <p>Photo:</p>
+        <input type="file" id="photo" accept="image/*">
+        <p>Gender:</p>
+        <label>
+          <input type="radio" name="gender" value="Male"> Male
+        </label>
+        <label>
+          <input type="radio" name="gender" value="Female"> Female
+        </label>
+        <label>
+          <input type="radio" name="gender" value="other"> Other
+        </label>
+        <p>Skills:</p>
+        <label>
+          <input type="checkbox" name="skills" value="HTML"> HTML
+        </label>
+        <label>
+          <input type="checkbox" name="skills" value="CSS"> CSS
+        </label>
+        <label>
+          <input type="checkbox" name="skills" value="JavaScript"> JavaScript
+        </label>
+        <input type="submit" value="Register">
+      </form>
+    </div>
+    <hr class="seperation-border" />
+    <div class="registration-data">
+      <h2>Registration Data:</h2>
+      <div id="id-card"></div>
+    </div>
+  </div>
+  <footer class="link">
+    <a href="https://www.github.com/ashhar-rahman/" target="_self"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/ashhar_rahman" target="_self"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/ashhar_rahman/" target="_self"><i class="fab fa-instagram"></i></a>
+            <!-- <a href="https://www.facebook.com/ashar.rahman.77/" target="_self"><i class="fab fa-facebook"></i></a> -->
+            <a href="https://www.linkedin.com/in/ashhar-rahman-150b10201/" target="_self"><i class="fab fa-linkedin"></i></a>
+            <!-- <a href="https://www.facebook.com/ashar.rahman.77/" target="_self"><i class="fab fa-Email"></i></a> -->
+  </footer>
+
+  <script>
+    var registrations = [];
+
+    function displayRegistrationData() {
+      var fullname = document.getElementById('fullname').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var photo = document.getElementById('photo').files[0];
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      var skills = [];
+      var skillCheckboxes = document.querySelectorAll('input[name="skills"]:checked');
+      skillCheckboxes.forEach(function(skillCheckbox) {
+        skills.push(skillCheckbox.value);
+      });
+
+      var registration = {
+        fullname: fullname,
+        email: email,
+        password: password,
+        photo: photo,
+        gender: gender,
+        skills: skills
+      };
+
+      registrations.push(registration);
+
+      var idCardSection = document.getElementById('id-card');
+      idCardSection.innerHTML = '';
+
+      registrations.forEach(function(registration, index) {
+        var idCard = document.createElement('div');
+        idCard.className = 'id-card';
+
+        var photoElement = document.createElement('img');
+        photoElement.src = URL.createObjectURL(registration.photo);
+        idCard.appendChild(photoElement);
+
+        var nameElement = document.createElement('p');
+        nameElement.textContent = 'Name: ' + registration.fullname;
+        idCard.appendChild(nameElement);
+
+        var emailElement = document.createElement('p');
+        emailElement.textContent = 'Email: ' + registration.email;
+        idCard.appendChild(emailElement);
+
+        var passwordElement = document.createElement('p');
+        passwordElement.textContent = 'Password: ' + registration.password;
+        idCard.appendChild(passwordElement);
+
+        var genderElement = document.createElement('p');
+        genderElement.textContent = 'Gender: ' + registration.gender;
+        idCard.appendChild(genderElement);
+
+        var skillsElement = document.createElement('p');
+        skillsElement.textContent = 'Skills: ' + registration.skills.join(', ');
+        idCard.appendChild(skillsElement);
+
+        idCardSection.appendChild(idCard);
+      });
+
+      document.getElementById('fullname').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
+      document.getElementById('photo').value = '';
+      document.querySelector('input[name="gender"]:checked').checked = false;
+      skillCheckboxes.forEach(function(skillCheckbox) {
+        skillCheckbox.checked = false;
+      });
+    }
+  </script>
+</body>
+</html>
